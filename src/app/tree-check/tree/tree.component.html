@@ -1,0 +1,31 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-6">
+    <p-panel [collapsed]="idx>0" *ngFor="let menu of data$ | async ;let idx=index">
+      <p-header>
+        <app-indeterminate-checkbox class="mouse-pointer" [disabled]="disabled" [state]="menu?.state" (stateChange)="changeState(menu, $event)"></app-indeterminate-checkbox>
+        <span (click)="toggle($event, idx)">{{ menu.name }}</span>
+      </p-header>
+      <ul>
+        <li *ngFor="let subMenu of menu.children" [ngClass]="{'bg-grey-300': currentSubMenu == subMenu}">
+          <app-indeterminate-checkbox class="mouse-pointer" [disabled]="disabled" [state]="subMenu?.state" (stateChange)="changeState(subMenu, $event)"
+            (click)="currentSubMenu = subMenu"></app-indeterminate-checkbox>
+          <span class="mouse-pointer" (click)="currentSubMenu = subMenu">{{ subMenu.name}}</span>
+        </li>
+      </ul>
+    </p-panel>
+  </div>
+  <div class="ui-g-12 ui-md-6">
+    <p-panel #funpanel *ngIf="currentSubMenu">
+      <p-header>
+        <app-indeterminate-checkbox class="mouse-pointer" [label]="currentSubMenu?.name" [disabled]="disabled"
+          [state]="currentSubMenu?.state" (stateChange)="changeState(currentSubMenu, $event)"></app-indeterminate-checkbox>
+      </p-header>
+      <ul>
+        <li *ngFor="let functionData of currentSubMenu?.functions">
+          <app-indeterminate-checkbox class="mouse-pointer" [label]="functionData.name" [disabled]="disabled" [state]="functionData?.state"
+            (stateChange)="changeState(functionData, $event)"></app-indeterminate-checkbox>
+        </li>
+      </ul>
+    </p-panel>
+  </div>
+</div>

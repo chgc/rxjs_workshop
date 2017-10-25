@@ -1,0 +1,6 @@
+<span (click)="changeState()" [ngClass]="{disabled: disabled}">
+  <i *ngIf="state !== 1 && state !== 2" class="fa fa-fw fa-square-o"></i>
+  <i *ngIf="state === 1" class="fa fa-fw fa-check-square-o"></i>
+  <i *ngIf="state === 2" class="fa fa-fw fa-minus-square-o"></i>
+  {{ label }}
+</span>
