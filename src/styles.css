@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+.invalid:after {
+  content: '\f00d';
+  font-family: FontAwesome;
+  color: #a94442;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-size: 18px;
+}
+
+.valid:after {
+  content: '\f00c';
+  font-family: FontAwesome;
+  color: #42a948;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-size: 18px;
+}
